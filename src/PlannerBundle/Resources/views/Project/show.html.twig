@@ -1,0 +1,151 @@
+{% extends "PlannerBundle:Default:index.html.twig" %}
+
+{% block menu %}
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-brand">Project name:</p>
+                <p class="navbar-brand" id="projectName">{{ name }}    </p>
+            </div>
+            <div class="navbar-header">
+                <p class="navbar-brand"> Budget:</p>
+                <p class="navbar-brand" id="projectName"><a href="./../budget">$$$$</a></p>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Homepage</a></li>
+                <li><a href="{{ relative_path('profile') }}" class="logoff">See your profile</a></li>
+                <a href="./../logout">
+                    <span class="glyphicon glyphicon-off navbar-brand"></span>
+                </a>
+            </ul>
+        </div>
+    </nav>
+{% endblock menu %}
+
+{% block content %}
+    <div class="container">
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-lg" id="buttonAddTask" data-toggle="modal" data-target="#myModal">Create new task</button>
+
+        <!-- Modal edit -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    {% include 'PlannerBundle:Project:form.html.twig' %}
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal done -->
+        <div class="modal fade" id="doneModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Do you want to mark this task as done?
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-success btn-ok" data-dismiss="modal">Yes</a>
+                        <button type="button" class="btn btn-default " data-dismiss="modal">No, close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal delete -->
+        <div class="modal fade" id="deleteModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Do you want to delete the task?
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-success btn-ok">Yes</a>
+                        <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">No, close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <span>
+             Add other users to project <a href="./{{ name }}/addUser"><button type="button" class="btn btn-info btn-lg glyphicon glyphicon-plus" id="addUser"></button></a>
+        </span>
+
+    </div>
+    <br><br>
+    <div>
+        {% if tasks is empty %}
+            <h4>You do not have any tasks created yet</h4>
+        {% else %}
+            {%  for task in tasks %}
+                {% if task.done == 0 %}
+                    <div id="taskUndone">
+                        <div class="task"  id={{ task.id }}>
+                            <div><h4 class="classTitle">{{ task.name }}</h4>
+                                <button type="button" class="glyphicon glyphicon-trash edit" data-toggle="modal" data-target="#deleteModal"></button>
+                                <button type="button" class="glyphicon glyphicon-ok edit" data-toggle="modal" data-target="#doneModal"></button>
+                                <button type="button" data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-pencil edit"></button>
+                            </div>
+                            <hr>
+                            <div><i>{{ task.description }}</i></div>
+                            {% set taskId = task.id %}
+                            <div>
+                                <ul>
+                                    {% for material in materials %}
+                                        {% if material.material.taskId.id  == taskId %}
+                                            <li>{{ material.material.name }}</li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div>{{ task.costs }} PLN</div>
+                            <div>
+                                <span class="glyphicon glyphicon-comment comments"></span>
+                            </div><br>
+                            <div id="commentsBox">
+                                {% for comment in comments %}
+                                    {% if comment.comment.taskId.id  == taskId %}
+                                        <p>{{ comment.author }} on:  {{ comment.comment.date|date("d.m.Y h:m") }} <br>{{ comment.comment.text }} </p>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {%  endif %}
+                {% if task.done == 1 %}
+                    <div id="taskDone"> Done tasks: <br>
+                        <div class="task"  id={{ task.id }}>
+                            <div>
+                                <h4 class="classTitle">{{ task.name }}</h4>
+                            </div>
+                            <hr>
+                            <div><i>{{ task.description }}</i></div><br>
+                            {% set taskId = task.id %}
+                            <div>
+                                <ul>
+                                    {% for material in materials %}
+                                        {% if material.material.taskId.id  == taskId %}
+                                            <li>{{ material.material.name }}</li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div>{{ task.costs }} PLN</div>
+                        </div>
+                    </div>
+                {% endif %}    
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock content %}

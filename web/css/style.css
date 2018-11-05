@@ -1,0 +1,111 @@
+h1{
+    margin-left: 5px;
+}
+
+hr{
+    border-color: black;
+}
+
+.addProject{
+    background-color: #333;
+    border-color: #333;
+}
+
+#footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+}
+
+#projectName{
+    margin: auto;
+    font-weight: 900;
+    font-size: 2em;
+}
+
+.task{
+    background: #E2E4E6;
+    text-align: center;
+    border-radius: 3px;
+    box-sizing: border-box;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-height: 100%;
+    position: relative;
+    white-space: normal;
+    width: 270px;
+    margin: 0 5px;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid dimgrey;
+    margin-bottom: 20px;
+}
+
+.edit{
+    float:right;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.comments{
+    float:right;
+    margin-right: 15px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    display: block;
+}
+
+.classTitle{
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.form-group {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.project{
+    font-size:20px;
+    background-color: #333;
+    border-color: #333;
+    height: 50px;
+    width: 150px;
+    text-align: match-parent;
+}
+
+.hidden{
+    display: none;
+}
+
+.budget{
+    margin-left: 10px;
+    font-size: 2em;
+    border: 1px solid dimgrey;
+}
+table.budget td{
+    border: 1px solid dimgrey;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+div#form ul li{
+    display:none;
+}
+#taskUndone{
+    width: 75%;
+    float: left;
+}
+#taskDone{
+    width: 25%;
+    float: right;
+}

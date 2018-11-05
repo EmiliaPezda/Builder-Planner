@@ -1,0 +1,16 @@
+{% extends "PlannerBundle:Default:startPage.html.twig" %}
+
+{% block content %}
+    <h1>Add user to project <b>{{ name }}</b></h1>
+
+    {{ form_start(form) }}
+
+        {{ form_label(form.username)}}
+        {{ form_widget(form.username)}}
+
+    {{ form_widget(form.save, { 'attr': {'class': 'btn btn-default form-group'}}) }}
+{% if error is defined %}
+    {{ error }}
+{% endif %}
+
+{% endblock content %}

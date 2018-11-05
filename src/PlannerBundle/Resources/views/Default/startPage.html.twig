@@ -1,0 +1,19 @@
+{% extends "PlannerBundle:Default:index.html.twig" %}
+
+{% block content %}
+    <div>
+    <h1>Start new project</h1>
+        <a href="{{ url('new_project') }}" class="btn btn-info btn-l addProject">
+            <span class="glyphicon glyphicon-plus"></span> Add
+        </a>
+    </div>
+    <div>
+        <h1>Go to your current projects</h1>
+            {% for project in projects %}
+                <a href="./project/{{ project.name }}">
+                    <span class="btn btn-info btn-l project">{{ project.name }}</span>
+                </a>
+            {% endfor %}
+    </div>
+
+{% endblock content %}

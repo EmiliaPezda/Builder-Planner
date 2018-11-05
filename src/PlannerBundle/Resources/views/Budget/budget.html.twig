@@ -1,0 +1,28 @@
+{% extends "PlannerBundle:Default:startPage.html.twig" %}
+
+{% block content %}
+    <h1>Budget<hr></h1>
+    <div>
+        <table class="budget">
+            <tr>
+                <td>Current balance</td>
+                <td>{{ balance }}</td>
+            </tr>
+            <tr>
+                <td>Planned expenses</td>
+                <td>{{ expenses }}</td>
+            </tr>
+        </table>
+    </div>
+    <br><br>
+    <div>
+        {{ form_start(form1) }}
+        {{ form_widget(form1) }}
+        {{ form_end(form1) }}
+    </div><br>
+    <div>
+        {{ form_start(form2) }}
+        {{ form_widget(form2) }}
+        {{ form_end(form2) }}
+    </div>
+{% endblock content %}

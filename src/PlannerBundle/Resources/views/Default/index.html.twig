@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+
+<html>
+
+{% block head %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="{{ asset('js/javascript.js') }}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Builder Planner</title>
+</head>
+{% endblock %}
+
+
+<body>
+{% block body %}
+    {% block menu %}
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <p class="navbar-brand">Bulider Planner</p>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Homepage</a></li>
+                    <li><a href="./new-project">New project</a></li>
+                    <li class="dropdown">
+                        <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#">List of projects
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                {#{% if projects is defined %}#}
+                                {#{% for project in projects  %}#}
+                                    {#<a href="./project/{{ project.name }}">{{ project.name }}</a>#}
+                                {#{% endfor %}#}
+                                {#{% endif %}#}
+                            </li>
+                        </ul> -->
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if app.user %}
+                        <li><a href="./profile" class="logoff">See your profile</a></li>
+                        <a href="./logout">
+                            <span class="glyphicon glyphicon-off navbar-brand"></span>
+                        </a>
+                    {% else %}
+                        <li><a href="./login"  class="logoff navbar-brand">Login</a></li>
+                        <li><a href="./register"  class="logoff navbar-brand">Register now</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    {% endblock menu %}
+<div id="content">{% block content %}{% endblock content %}</div>
+<!--<div id="footer">
+    {#{% block footer %}#}
+        {#© Copyright 2017 Emilia Pezda#}
+    {#{% endblock footer %}#}
+</div> -->
+{% endblock body %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+
+</html>

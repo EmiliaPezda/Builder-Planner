@@ -1,0 +1,10 @@
+{% extends "PlannerBundle:Default:index.html.twig" %}
+
+{% block content %}
+    <div>
+        <h1>Enter project data</h1>
+    <div>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
