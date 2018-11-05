@@ -36,12 +36,6 @@ class Task
 
     private $comments;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Material", mappedBy="taskId")
-     */
-
-    private $materials;
-
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -150,29 +144,6 @@ class Task
     }
 
     /**
-     * Set materials
-     *
-     * @param integer $materials
-     * @return Task
-     */
-    public function setMaterials($materials)
-    {
-        $this->materials = $materials;
-
-        return $this;
-    }
-
-    /**
-     * Get materials
-     *
-     * @return ArrayCollection
-     */
-    public function getMaterials()
-    {
-        return $this->materials;
-    }
-
-    /**
      * Set costs
      *
      * @param float $costs
@@ -226,13 +197,5 @@ class Task
     {
         $this->comments = $comments;
     }
-
-
-    public function addMaterial(\PlannerBundle\Entity\Material $material)
-    {
-        $this->materials[] = $material;
-        return $this;
-    }
-
 
 }

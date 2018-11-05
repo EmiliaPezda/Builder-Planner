@@ -11,14 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 use PlannerBundle\Entity\Project;
 use PlannerBundle\Entity\Task;
 use PlannerBundle\Entity\Comment;
-use PlannerBundle\Entity\Material;
 use PlannerBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProjectController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="startPage")
      */
     public function indexAction()
     {
@@ -28,7 +27,7 @@ class ProjectController extends Controller
             return $this->render('PlannerBundle:Default:startPage.html.twig', ['projects' => $projects]);
         }
         else{
-            return $this->redirect('./login');
+            return $this->redirect('./register');
         }
 
     }
@@ -81,18 +80,10 @@ class ProjectController extends Controller
         $project_id = $project->getId();
         $task->setProject($project_id);
 
-        $materials = [];
         $comments = [];
 
         foreach ($tasks as $oneTask) {
             $id = $oneTask->getId();
-            $taskMaterials = $em->getRepository('PlannerBundle:Material')->findBy(['taskId' => $id]);
-            foreach ($taskMaterials as $material) {
-                $materials[] = array(
-                    'material' => $material,
-                    'id' => $id
-                );
-            }
 
             //get all comment objects from specified task
             $taskComments = $em->getRepository('PlannerBundle:Comment')->findBy(['taskId' => $id]);
@@ -114,7 +105,6 @@ class ProjectController extends Controller
             ->setMethod('POST')
             ->add('name', 'text')
             ->add('description', 'text')
-            ->add('materials', 'text')
             ->add('costs', 'integer')
             ->add('save', 'submit', ['label' => 'Add task'])
             ->getForm();
@@ -126,7 +116,6 @@ class ProjectController extends Controller
             $taskName = $form["name"]->getData();
             $taskDescription = $form["description"]->getData();
             $taskCosts = $form["costs"]->getData();
-            $materialy = $form["materials"]->getData();
 
             //adding task data
             $task = new Task();
@@ -154,7 +143,7 @@ class ProjectController extends Controller
 //            }
 
 
-            return $this->redirectToRoute('show_project', ['form' => $form->createView(), 'name' => $name, 'tasks' => $tasks, 'materials' => $materials, 'comments' => $comments]);
+            return $this->redirectToRoute('show_project', ['form' => $form->createView(), 'name' => $name, 'tasks' => $tasks, 'comments' => $comments]);
         }
 
         //if comment was added
@@ -175,7 +164,7 @@ class ProjectController extends Controller
         }
 
 
-        return $this->render('PlannerBundle:Project:show.html.twig', ['form' => $form->createView(), 'name' => $name, 'tasks' => $tasks, 'materials' => $materials, 'comments' => $comments]);
+        return $this->render('PlannerBundle:Project:show.html.twig', ['form' => $form->createView(), 'name' => $name, 'tasks' => $tasks, 'comments' => $comments]);
     }
 
 

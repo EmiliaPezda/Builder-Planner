@@ -3,7 +3,6 @@
 namespace PlannerBundle\Form\Type;
 
 use AppBundle\Entity\Task;
-use PlannerBundle\Entity\Material;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

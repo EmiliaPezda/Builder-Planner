@@ -100,15 +100,6 @@
                             <hr>
                             <div><i>{{ task.description }}</i></div>
                             {% set taskId = task.id %}
-                            <div>
-                                <ul>
-                                    {% for material in materials %}
-                                        {% if material.material.taskId.id  == taskId %}
-                                            <li>{{ material.material.name }}</li>
-                                        {% endif %}
-                                    {% endfor %}
-                                </ul>
-                            </div>
                             <div>{{ task.costs }} PLN</div>
                             <div>
                                 <span class="glyphicon glyphicon-comment comments"></span>
@@ -132,15 +123,6 @@
                             <hr>
                             <div><i>{{ task.description }}</i></div><br>
                             {% set taskId = task.id %}
-                            <div>
-                                <ul>
-                                    {% for material in materials %}
-                                        {% if material.material.taskId.id  == taskId %}
-                                            <li>{{ material.material.name }}</li>
-                                        {% endif %}
-                                    {% endfor %}
-                                </ul>
-                            </div>
                             <div>{{ task.costs }} PLN</div>
                         </div>
                     </div>
