@@ -47,28 +47,10 @@ $(document).ready(function() {
         $('#form_save').html('Add task');
     });
 
-    var doneButtons = $("button.glyphicon-ok"); //mark as done buttons
-
-    doneButtons.on('click', function(){
-        var clickedTask = $(this).parent().parent();
-        var IdOfTask = clickedTask.attr('id');
-
-
-    var project_name = $('#projectName').html();
-
-        $('a.btn-success').click(function(){
-
-                $.ajax({
-                    url: "./"+project_name,
-                    type: "GET",
-                    data: {"taskId": IdOfTask},
-                    success: function (response) {
-                        alert('task marked as done');
-                        //window.location.reload();
-                    }
-                });
-        });
-   
+    var deleteButton = $('.glyphicon-trash');
+    
+    deleteButton.on('click', function(){
+        var deletedTask = $(this).parent().parent();
+        console.log(deletedTask);
     });
-
 });

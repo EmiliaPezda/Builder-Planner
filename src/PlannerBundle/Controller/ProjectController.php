@@ -131,18 +131,6 @@ class ProjectController extends Controller
 
             $task_id = $task->getId();
 
-            //adding materials to the table
-//            foreach ( $materialsNew as $material){
-//                $newMaterial = new Material();
-//                $newMaterial->setTaskId($task_id);
-//                $newMaterial->setName($material);
-//                $em = $this->getDoctrine()->getManager();
-//                $em->persist($newMaterial);
-//                $em->flush();
-//                $task->addMaterial($newMaterial);
-//            }
-
-
             return $this->redirectToRoute('show_project', ['form' => $form->createView(), 'name' => $name, 'tasks' => $tasks, 'comments' => $comments]);
         }
 
@@ -162,7 +150,8 @@ class ProjectController extends Controller
             $em->flush();
 
         }
-
+        
+        //if the task was marked as done
 
         return $this->render('PlannerBundle:Project:show.html.twig', ['form' => $form->createView(), 'name' => $name, 'tasks' => $tasks, 'comments' => $comments]);
     }
